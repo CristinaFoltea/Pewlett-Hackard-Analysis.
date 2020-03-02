@@ -17,10 +17,11 @@ FROM (SELECT *, ROW_NUMBER() OVER (PARTITION BY (emp_no) ORDER BY from_date DESC
 WHERE rn = 1;
 
 --frequency count of the employee title 
-select title, count(title)
+select title, count(title) as count
 into count_by_title
 from retirement_info_without_duplicate_title
 group by title
+order by count desc
 
 -- List of potential mentors
 -- 1549 count
